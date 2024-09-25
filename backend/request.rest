@@ -12,4 +12,7 @@ Content-Type: application/json
 GET http://localhost:3001/api/services
 
 ###
-GET http://localhost:3001/api/services/66f42c54801e25004ae9a957
+GET http://localhost:3001/api/services/66f42af2d4203a13d8b5f1eb
+
+###
+DELETE  http://localhost:3001/api/services/66f42af2d4203a13d8b5f1eb
