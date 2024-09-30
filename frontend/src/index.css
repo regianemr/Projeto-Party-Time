@@ -25,3 +25,22 @@ p {
     color: #747990;
 }
 
+.btn, .btn-secondary {
+    color: #fff;
+    background-color: #7703fc;
+    padding: .5rem 1rem;
+    border-radius: 8px;
+    transition: .4s;
+    cursor: pointer;
+    display: block;
+}
+
+.btn:hover {
+    opacity: .8s;
+}
+
+.btn-secondary {
+    background-color: #fff;
+    color: #283252;
+    border: 1px solid #cfcfcf;
+}
