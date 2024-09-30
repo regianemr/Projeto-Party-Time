@@ -1,7 +1,7 @@
 import React from 'react'
 
 const CreateParty = () => {
-  return <div>CreateParty</div>
+  return <div>Create Party</div>
   
 }
 
