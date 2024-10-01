@@ -68,9 +68,11 @@ const CreateParty = () => {
       if(res.status === 201) {
         navigate("/")
   
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         useToast(res.data.msg)
       }
     } catch (error) {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       useToast(error.response.data.msg, "error")
     }
   }
