@@ -78,14 +78,14 @@ const CreateParty = () => {
   }
 
   return <div className="form-page">
-    <h2>Crie sua próxima festa</h2>
+    {/* <h2>Crie sua próxima festa</h2> */}
     <p>Defina o seu orçamento e escolha os serviços</p>
     <form onSubmit={(e) => createParty(e)}>
       <label>
         <span>Nome da festa:</span>
         <input 
           type="text" 
-          placeholder="Seja criativo..." 
+          placeholder="Digite o nome que você quer dar para sua festa..." 
           required 
           onChange={(e) => setTitle(e.target.value)}
           value={title}
@@ -131,7 +131,7 @@ const CreateParty = () => {
         />
       </label>
       <div>
-        <h2>Escolha os serviços</h2>
+        <h2>Escolha os serviços:</h2>
         <div className="services-container">
           {services.length === 0 && <p>Carregando...</p>}
           {services.length > 0 && services.map((service) => (

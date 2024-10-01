@@ -4,7 +4,7 @@ import "./Navbar.css"
 const Navbar = () => {
     return(
         <nav id="navbar">
-            <h2>Party Time!</h2>
+            <h2>Seja Bem-Vindo! Crie sua festa aqui.</h2>
             <ul>
                 <li>
                     <NavLink to="/" >Minhas Festas</NavLink>

@@ -3,9 +3,16 @@
     text-align: center;
     margin-bottom: 1rem;
 }
-
+.form-page {
+    background-color: #202024;
+}
 .form-page p {
-    color: #7703fc;
+    color: #f3f0f0;
+    padding: 1rem;
+}
+
+.form-page .service-name {
+    color: #202024;
 }
 
 .form-page form {
@@ -66,6 +73,13 @@
     text-align: center;
 }
 
+.form-page h2 {
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #4b4444;
+    margin: 2rem;
+}
+
 .form-page .service p {
     margin-bottom: 0;
 }
@@ -94,5 +108,7 @@
 .form-page .btn {
     max-width: 150px;
     margin: 0 auto;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    border-radius: 80px;
+    border: none;
 }
