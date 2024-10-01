@@ -16,6 +16,8 @@ const EditParty = () => {
     const [party, setParty] = useState(null)
 
     const [services, setServices] = useState([])
+
+    const navigate = useNavigate()
     
     // Load services
     useEffect(() => {
@@ -32,17 +34,47 @@ const EditParty = () => {
         const loadParty = async() => {
             const res = await partyFetch.get(`/parties/${id}`)
 
-            console.log(res.data)
-
             setParty(res.data)
         }
 
         loadServices()
     }, [])
 
-    const updateParty = (e) => {
-        e.preventDefault()
+    // add or remove services
+    const handleServices = (e) => {
+        const checked = e.target.checked
+        const value = e.target.value
+
+        const filteredService = services.filter((s) => s._id === value)
+
+        let partyServices = party.services;
+
+        if (checked) {
+            partyServices = [...partyServices, filteredService[0]]
+        } else {
+            partyServices =  partyServices.filter((s) => s._id !== value)
+        }
+
+        setParty({...party, services: partyServices})
     }
+
+
+    const updateParty =  async (e) => {
+        e.preventDefault()
+
+        try {
+            const res = await partyFetch.put(`/parties/${party._id}`, party)
+
+            if(res.status === 200) {
+                navigate(`/party/${id}`)
+            }
+        } catch (error) {
+            useToast(error.response.data.msg, "error")
+        }
+
+    }
+
+        
 
     if(!party) return <p>Carregando...</p>
 
@@ -57,7 +89,7 @@ const EditParty = () => {
           type="text" 
           placeholder="Seja criativo..." 
           required 
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => setParty({...party, title: e.target.value})}
           value={party.title}
         />
       </label>
@@ -67,7 +99,7 @@ const EditParty = () => {
           type="text" 
           placeholder="Quem está dando a festa?" 
           required
-          onChange={(e) => setAuthor(e.target.value)}
+          onChange={(e) => setParty({...party, author: e.target.value})}
           value={party.author}
         />
       </label>
@@ -76,7 +108,7 @@ const EditParty = () => {
         <textarea 
           placeholder="Conte mais sobre a festa..." 
           required
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={(e) => setParty({...party, description: e.target.value})}
           value={party.description}
         ></textarea>
       </label>
@@ -86,7 +118,7 @@ const EditParty = () => {
           type="number" 
           placeholder="Quanto você pretente investir?" 
           required
-          onChange={(e) => setBudget(e.target.value)}
+          onChange={(e) => setParty({...party, budget: e.target.value})}
           value={party.budget}
         />
       </label>
@@ -96,7 +128,7 @@ const EditParty = () => {
           type="text" 
           placeholder="Insira a URL de uma imagem" 
           required
-          onChange={(e) => setImage(e.target.value)}
+          onChange={(e) => setParty({...party, image: e.target.value})}
           value={party.image}
         />
       </label>
@@ -110,13 +142,22 @@ const EditParty = () => {
               <p className='service-name'>{service.name}</p>
               <p className="service-price">R$ {service.price}</p>
               <div className="checkbox-container">
-                <input type="checkbox" value={service._id} onChange={(e) => handleServices(e)} />
+                <input  
+                    type="checkbox" 
+                    value={service._id} 
+                    onChange={(e) => handleServices(e)}
+                    checked={
+                        party.services.find(
+                            (partyService) => partyService._id === service._id
+                        ) || ""
+                    }
+                />
                 <p>Marque para solicitar</p>
               </div>
             </div>
           ))}
         </div>
-        <input type="submit" value="Criar Festa" className="btn" />
+        <input type="submit" value="Editar Festa" className="btn" />
       </div>
       
     </form>
